@@ -1,0 +1,6 @@
+export const GET_ERRORS = "GET_ERRORS";
+export const SET_CURRENT_USER = "SET_CURRENT_USER";
+
+export const GET_SNACK_MESSAGE = "GET_SNACK_MESSAGE";
+export const CLEAR_SNACK_MESSAGE = "CLEAR_SNACK_MESSAGE";
+
