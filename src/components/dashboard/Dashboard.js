@@ -3,22 +3,33 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import Navbar from '../layout/Navbar';
-import Sidebar from '../layout/Sidebar';
-
-import { logOut } from '../../actions/authActions';
+import Sidebar from '../../components/layout/Sidebar';
+import Navbar from '../../components/layout/Navbar';
 
 class Dashboard extends Component {
-    onLogoutClick = ()  => {
-        this.props.logOut();
-    }
 
     render() {
         return (
-            <div class="wrapper">
-                <Navbar {...this.props} />
+            <React.Fragment>
+                <Navbar />
                 <Sidebar {...this.props} />
-            </div>
+                <div className="content-wrapper">
+                    <div className="content-header">
+                        <div className="container-fluid">
+                            <div className="row mb-2">
+                                <div className="col-sm-6">
+                                    <h1 className="m-0 text-dark">Dashboard</h1>
+                                </div>
+                                <div className="col-sm-6">
+                                    <ol className="breadcrumb float-sm-right">
+                                        <li className="breadcrumb-item active">Dashboard</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </React.Fragment>
         )
     }
 }
@@ -26,7 +37,6 @@ class Dashboard extends Component {
 Dashboard.propTypes = {
     auth: PropTypes.object.isRequired,
     errors: PropTypes.object.isRequired,
-    logOut: PropTypes.object.isRequired,
 }
 
 const mapStateToProps = state => ({
@@ -36,5 +46,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { logOut }
+    { }
 )(withRouter(Dashboard));

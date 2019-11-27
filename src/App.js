@@ -3,8 +3,6 @@ import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './store';
 
-import Footer from './components/layout/Footer';
-import Navbar from './components/layout/Navbar';
 import jwt_decode from 'jwt-decode';
 import setAuthToken from './utils/setAuthToken';
 import { setCurrentUser } from './actions/authActions';
@@ -13,6 +11,11 @@ import PrivateRoute from './common/PrivateRoute';
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
 import Dashboard from './components/dashboard/Dashboard';
+import Category from './components/dashboard/Category';
+import AddCategory from './components/dashboard/AddCategory';
+import CategoryImages from './components/dashboard/CategoryImages';
+
+import './App.css';
 
 // Check for token
 if(localStorage.jwtToken) {
@@ -42,7 +45,12 @@ function App() {
         <Route exact path="/register" component={Register} />
         <Route exact path="/login" component={Login} />
         <Switch>
-          <PrivateRoute exact path="/dashboard" component={Dashboard} />
+          <div className="wrapper">
+            <PrivateRoute exact path="/dashboard" component={Dashboard} />
+            <PrivateRoute exact path="/category" component={Category} />
+            <PrivateRoute exact path="/add_category" component={AddCategory} />
+            <PrivateRoute exact path="/category_images" component={CategoryImages} />
+          </div>
         </Switch>
       </Router>
     </Provider>

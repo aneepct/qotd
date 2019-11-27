@@ -1,8 +1,16 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
-export default class Navbar extends Component {
+import { logOut } from '../../actions/authActions';
+
+class Navbar extends Component {
+    onLogoutClick = ()  => {
+        this.props.logOut();
+    }
+
     render() {
-        console.log(this.props);
         return (
             <nav className="main-header navbar navbar-expand navbar-white navbar-light">
                 <ul className="navbar-nav">
@@ -16,7 +24,7 @@ export default class Navbar extends Component {
 
                 <ul className="navbar-nav ml-auto">
                     <li className="nav-item">
-                        <a onClick={this.props.logOut} className="nav-link" data-widget="control-sidebar" data-slide="true">
+                        <a onClick={this.onLogoutClick} className="nav-link" data-widget="control-sidebar" data-slide="true">
                             <i className="fas fa-sign-out-alt"></i>
                         </a>
                     </li>
@@ -25,3 +33,19 @@ export default class Navbar extends Component {
         )
     }
 }
+
+Navbar.propTypes = {
+    auth: PropTypes.object.isRequired,
+    errors: PropTypes.object.isRequired,
+    logOut: PropTypes.func.isRequired,
+}
+
+const mapStateToProps = state => ({
+    auth: state.auth,
+    errors: state.errors
+});
+
+export default connect(
+    mapStateToProps,
+    { logOut }
+)(withRouter(Navbar));

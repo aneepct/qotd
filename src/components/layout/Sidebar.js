@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 export default class Sidebar extends Component {
 
     render() {
+        console.log(this.props.history.location.pathname);
         return (
             <aside className="main-sidebar sidebar-dark-primary elevation-4">
                 <a href="#/" className="brand-link">
@@ -24,13 +25,27 @@ export default class Sidebar extends Component {
                 <nav className="mt-2">
                     <ul className="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                     <li className="nav-item">
-                        <a href="#/" className="nav-link">
+                        <a href="/#/dashboard" className={
+                            (this.props.history.location.pathname === '/dashboard') ?
+                            "nav-link active" :
+                            "nav-link"
+                        }>
                             <i className="nav-icon fas fa-th"></i>
                             <p> Dashboard </p>
                         </a>
                     </li>
-                    <li className="nav-item has-treeview">
-                        <a href="#/dashboard" className="nav-link">
+                    <li className={
+                        (this.props.history.location.pathname === '/category' ||
+                        this.props.history.location.pathname === '/add_category') ?
+                        "nav-item has-treeview menu-open" :
+                        "nav-item has-treeview"
+                    }>
+                        <a href="#" className={
+                            (this.props.history.location.pathname === '/category' ||
+                            this.props.history.location.pathname === '/add_category') ?
+                            "nav-link active" :
+                            "nav-link"
+                        }>
                             <i className="nav-icon fas fa-copy"></i>
                             <p>
                                 Categories
@@ -39,21 +54,39 @@ export default class Sidebar extends Component {
                         </a>
                         <ul className="nav nav-treeview">
                             <li className="nav-item">
-                                <a href="#/" className="nav-link">
+                                <a href="/#/category" className={
+                                    (this.props.history.location.pathname === '/category') ?
+                                    "nav-link active" :
+                                    "nav-link"
+                                }>
                                     <i className="nav-icon fas fa-list"></i>
                                     <p>List</p>
                                 </a>
                             </li>
                             <li className="nav-item">
-                                <a href="#/" className="nav-link">
+                                <a href="/#/add_category" className={
+                                    (this.props.history.location.pathname === '/add_category') ?
+                                    "nav-link active" :
+                                    "nav-link"
+                                }>
                                     <i className="nav-icon fas fa-plus"></i>
                                     <p>Add Category</p>
                                 </a>
                             </li>
                         </ul>
                     </li>
-                    <li className="nav-item has-treeview">
-                        <a href="#" className="nav-link">
+                    {/* <li className={
+                        (this.props.history.location.pathname === '/category_images' ||
+                        this.props.history.location.pathname === '/category_images') ?
+                        "nav-item has-treeview menu-open" :
+                        "nav-item has-treeview"
+                    }>
+                        <a href="#" className={
+                            (this.props.history.location.pathname === '/category_images' ||
+                            this.props.history.location.pathname === '/category_images') ?
+                            "nav-link active" :
+                            "nav-link"
+                        }>
                         <i className="nav-icon fas fa-tree"></i>
                         <p>
                             Images
@@ -62,7 +95,11 @@ export default class Sidebar extends Component {
                         </a>
                         <ul className="nav nav-treeview">
                             <li className="nav-item">
-                                <a href="#/" className="nav-link">
+                                <a href="/#/category_images" className={
+                                    (this.props.history.location.pathname === '/category_images') ?
+                                    "nav-link active" :
+                                    "nav-link"
+                                }>
                                     <i className="nav-icon fas fa-list"></i>
                                     <p>List</p>
                                 </a>
@@ -74,7 +111,7 @@ export default class Sidebar extends Component {
                                 </a>
                             </li>
                         </ul>
-                    </li>
+                    </li> */}
                     </ul>
                 </nav>
                 </div>
